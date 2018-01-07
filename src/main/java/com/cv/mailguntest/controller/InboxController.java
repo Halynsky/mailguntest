@@ -20,6 +20,7 @@ public class InboxController {
     @PostMapping("post")
     public ResponseEntity<Void> postEmail(HttpServletRequest request) {
         log.info(String.valueOf(request));
+        request.getParameterMap().forEach((k,v)->System.out.println("Item : " + k + " Value : " + v));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
