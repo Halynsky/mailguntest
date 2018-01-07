@@ -18,6 +18,7 @@ public class LeadService {
         lead.setForm(from);
         lead.setTo(to);
 
+        log.info(to);
         String[] addressProperties = to.split("@")[0].split(".");
         lead.setSupplier(addressProperties[0]);
         lead.setPurpose(addressProperties[2]);
