@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("api/inbox")
@@ -20,7 +21,7 @@ public class InboxController {
     @PostMapping("post")
     public ResponseEntity<Void> postEmail(HttpServletRequest request) {
         log.info(String.valueOf(request));
-        request.getParameterMap().forEach((k,v)->System.out.println("Item : " + k + " Value : " + v));
+        request.getParameterMap().forEach((k,v)->System.out.println("Item : " + k + " Value : " + Arrays.toString(v)));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
