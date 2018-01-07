@@ -22,7 +22,7 @@ public class InboxController {
     public ResponseEntity<Void> postEmail(HttpServletRequest request) {
         log.info("========================================================");
         log.info(String.valueOf(request));
-        request.getParameterMap().forEach((k,v)->System.out.println(k + " => " + Arrays.toString(v)));
+        request.getParameterMap().forEach((k,v)->log.info(k + " => " + Arrays.toString(v)));
         log.info("========================================================");
         String from = request.getParameter("From");
         log.info(from);
