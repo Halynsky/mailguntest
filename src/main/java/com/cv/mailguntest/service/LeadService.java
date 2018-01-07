@@ -24,9 +24,9 @@ public class LeadService {
 
         String[] addressProperties = to.split("@")[0].split("\\.");
         lead.setSupplier(addressProperties[0]);
-        lead.setPurpose(addressProperties[2]);
-        lead.setDealerCenter(addressProperties[3]);
-        lead.setForm(addressProperties[4]);
+        lead.setPurpose(addressProperties[1]);
+        lead.setDealerCenter(addressProperties[2]);
+        lead.setForm(addressProperties[3]);
 
         String bodyProperties[] = body.split("\\r?\\n");
         lead.setClient(getPropertyFromLine(bodyProperties[0]));
