@@ -20,9 +20,9 @@ public class LeadService {
 
         log.info(to);
         log.info(to.split("@")[0]);
-        log.info(Arrays.toString(to.split("@")[0].split(".")));
+        log.info(Arrays.toString(to.split("@")[0].split("\\.")));
 
-        String[] addressProperties = to.split("@")[0].split(".");
+        String[] addressProperties = to.split("@")[0].split("\\.");
         lead.setSupplier(addressProperties[0]);
         lead.setPurpose(addressProperties[2]);
         lead.setDealerCenter(addressProperties[3]);
