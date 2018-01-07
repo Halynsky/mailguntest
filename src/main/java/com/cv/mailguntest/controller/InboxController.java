@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("api/inbox")
 public class InboxController {
@@ -16,7 +18,7 @@ public class InboxController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @PostMapping("post")
-    public ResponseEntity<Void> postEmail(HttpRequest request) {
+    public ResponseEntity<Void> postEmail(HttpServletRequest request) {
         log.info(String.valueOf(request));
         return new ResponseEntity<>(HttpStatus.OK);
     }
