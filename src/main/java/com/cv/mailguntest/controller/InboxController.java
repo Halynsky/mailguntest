@@ -2,6 +2,7 @@ package com.cv.mailguntest.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,8 @@ public class InboxController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @PostMapping("post")
-    public ResponseEntity<Void> postEmail() {
+    public ResponseEntity<Void> postEmail(HttpRequest request) {
+        log.info(String.valueOf(request));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
