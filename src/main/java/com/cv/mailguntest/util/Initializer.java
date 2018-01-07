@@ -22,6 +22,7 @@ public class Initializer {
 
     @PostConstruct
     public void init () throws Exception {
+        log.info("Initializing...");
         createRoute();
     }
 
