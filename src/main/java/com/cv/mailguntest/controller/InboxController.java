@@ -20,16 +20,16 @@ public class InboxController {
 
     @PostMapping("post")
     public ResponseEntity<Void> postEmail(HttpServletRequest request) {
-        log.info("========================================================");
-        log.info(String.valueOf(request));
-        request.getParameterMap().forEach((k,v)->log.info(k + " => " + Arrays.toString(v)));
+//        log.info("========================================================");
+//        log.info(String.valueOf(request));
+//        request.getParameterMap().forEach((k,v)->log.info(k + " => " + Arrays.toString(v)));
         log.info("========================================================");
         String from = request.getParameter("From");
         log.info(from);
         String bodyPlain = request.getParameter("body-plain");
         log.info(bodyPlain);
-        String strippedText = request.getParameter("stripped-text");
-        log.info(strippedText);
+        String lines[] = bodyPlain.split("\\r?\\n");
+        log.info(Arrays.toString(lines));
         log.info("========================================================");
         return new ResponseEntity<>(HttpStatus.OK);
     }
