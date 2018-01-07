@@ -29,6 +29,7 @@ public class InboxController {
         String bodyPlain = request.getParameter("body-plain");
         log.info(bodyPlain);
         String lines[] = bodyPlain.split("\\r?\\n");
+        log.info("Lines:");
         log.info(Arrays.toString(lines));
         log.info("========================================================");
         return new ResponseEntity<>(HttpStatus.OK);
