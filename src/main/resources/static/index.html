@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<div class="container">
+
+    <form id="parse_email_form" class="parse-email-form">
+
+        <h1>Test email parser</h1>
+
+        <div class="form-group">
+            <label for="emailFrom">Email address</label>
+            <input type="emailFr" name="from" class="form-control" id="emailFrom" aria-describedby="emailHelp"
+                   placeholder="Target email address"
+                   value="best.lead.supplier@gmail.com">
+        </div>
+        <div class="form-group">
+            <label for="emailTo">Email address</label>
+            <input type="email" name="to" class="form-control" id="emailTo" aria-describedby="emailHelp"
+                   placeholder="Target email address"
+                   value="toyota.purchase.tck.bestform@sandbox0b2887a0fcec4fe7ab67297c0f04ebdf.mailgun.org">
+        </div>
+        <div class="form-group">
+            <label for="emailBody">Password</label>
+            <textarea type="text" name="body" class="form-control" id="emailBody" placeholder="Email body" rows="10">
+Client: Семанчук Юрий
+Model: Camry
+Phone: +7(916)659-4595
+Email: Ysemanchuk@me.com
+Description: Хочу купить автомобиль. Нужна консультация.
+            </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Parse</button>
+    </form>
+
+    <div id="result_wrapper">
+
+        <h1>Lead details:</h1>
+
+        <div id="properties"></div>
+
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+        integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+<style>
+    textarea {
+
+    }
+
+    #result_wrapper {
+        display: none;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .property-wrapper {
+        display:flex;
+        margin-bottom: 6px;
+    }
+
+    .label {
+        margin-right: 16px;
+        font-weight: 600;
+        width: 108px;
+    }
+
+    .value {
+        padding: 2px 8px;
+        border-radius: 4px;
+        background-color: #dae0e5;
+    }
+
+
+</style>
+
+<script>
+
+    $("#parse_email_form").submit(function (event) {
+        console.log("Handler for .submit() called.");
+        $.post("api/parse", $("#parse_email_form").serialize(), function (data ) {
+            console.log("success");
+            console.log(data);
+
+            $('#properties').empty();
+
+            $.each( data, function( key, value ) {
+                console.log( key + ": " + value );
+                if (value == "") {
+                    value = "-"
+                }
+                var line = $( "<div class='property-wrapper'><span class='label'>" + key + ":</span><span class='value'>" + value + "</span></div>" );
+                $('#properties').append(line);
+            });
+
+            $('#result_wrapper').show();
+
+
+        })
+            .fail(function () {
+                console.log("error");
+                $('#properties').empty();
+            })
+            .always(function () {
+                console.log("finished");
+            });
+
+        event.preventDefault();
+    });
+
+
+</script>
