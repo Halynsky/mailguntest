@@ -23,7 +23,7 @@ public class Initializer {
     @PostConstruct
     public void init () throws Exception {
         log.info("Initializing...");
-//        createRoute();
+        createRoute();
     }
 
     public static JsonNode createRoute() throws UnirestException {
